@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const { createServer } = require('http');
+const fileUpload = require('express-fileupload');
 
 
 class Server {
@@ -37,6 +38,15 @@ class Server {
         // Directorio Público
         const publicPath = path.resolve(__dirname, './../public');
         this.app.use(express.static(publicPath));
+        // Directorio para imagenes
+        const publicPathImg = path.resolve(__dirname, './../uploads/imgs');
+        this.app.use(express.static(publicPathImg));
+
+        this.app.use(fileUpload({
+            useTempFiles: true,
+            tempFileDir: '/tmp/',
+            createParentPath: true
+        }))
     }
 
     routes() {
