@@ -1,5 +1,6 @@
 const { Router } = require('express');
-const { validarArchivoSubir, validarCampos } = require('./../middlewares');
+const { check } = require('express-validator');
+const { validarCampos } = require('./../middlewares');
 const { sendImage } = require('./../controllers');
 
 
@@ -8,7 +9,7 @@ const router = Router();
 router.post(
     '/',
     [
-        validarArchivoSubir,
+        check('photo', 'Falta enviar la imagen').isLength({ min: 1 }),
         validarCampos,
     ],
     sendImage
