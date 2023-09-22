@@ -47,11 +47,17 @@ class Server {
             tempFileDir: '/tmp/',
             createParentPath: true
         }))
+
+        this.app.get('*', (req, res) => {
+            // console.log(__dirname, '/public/index.html')
+            res.sendFile(path.resolve(__dirname, './../public/index.html'))
+        })
     }
 
     routes() {
         //image
         this.app.use(this.paths.image, require('./routes/image'));
+
     }
 
     listen() {
