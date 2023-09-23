@@ -1,7 +1,9 @@
 const {
-    sendImage
+    sendImage,
+    getImage
 } = require('./image');
 
 module.exports = {
     sendImage,
+    getImage,
 }
