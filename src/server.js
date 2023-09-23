@@ -48,9 +48,9 @@ class Server {
             createParentPath: true
         }))
 
-        // this.app.get('*', (req, res) => {
-        //     res.sendFile(path.resolve(__dirname, './../public/index.html'))
-        // })
+        this.app.get('*', (req, res) => {
+            res.sendFile(path.resolve(__dirname, './../public/index.html'))
+        })
     }
 
     routes() {
