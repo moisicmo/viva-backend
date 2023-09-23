@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const { check } = require('express-validator');
 const { validarCampos } = require('./../middlewares');
-const { sendImage } = require('./../controllers');
+const { sendImage, getImage } = require('./../controllers');
 
 
 const router = Router();
@@ -13,6 +13,15 @@ router.post(
         validarCampos,
     ],
     sendImage
+);
+
+router.get(
+    '/photo/:id',
+    [
+        check('id', 'El parámetro "id" es requerido y debe ser una cadena').isLength({ min: 1}),
+        validarCampos,
+    ],
+    getImage
 );
 
 module.exports = router;
