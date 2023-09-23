@@ -11,9 +11,8 @@ const sendImage = async (req, res) => {
         let base64Image = base64String.split(';base64,').pop();
 
         // Generar un nombre de archivo único con extensión .jpg (4 caracteres)
-        const uniqueName = generateRandomName(4) + '.jpg';
-
-        const uploadPath = path.join(__dirname, '../../uploads/imgs', uniqueName);
+        const uniqueName = generateRandomName(4);
+        const uploadPath = path.join(__dirname, '../../uploads/imgs', `${uniqueName}.jpg`,);
 
         // Escribir la cadena base64 como un archivo .jpg
         fs.writeFile(uploadPath, base64Image, { encoding: 'base64' }, function (err) {
@@ -23,8 +22,7 @@ const sendImage = async (req, res) => {
                     errors: [{ msg: "Error al cargar la imagen" }]
                 });
             } else {
-                // Responder con un mensaje de éxito
-                res.json({ msg: "Imagen cargada correctamente" });
+                res.json({ msg: "Imagen cargada correctamente", codeImage: uniqueName });
             }
         });
 
