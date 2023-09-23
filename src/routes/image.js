@@ -15,7 +15,7 @@ router.post(
     sendImage
 );
 
-router.get(
+router.patch(
     '/photo/:id',
     [
         check('id', 'El parámetro "id" es requerido y debe ser una cadena').isLength({ min: 1}),
